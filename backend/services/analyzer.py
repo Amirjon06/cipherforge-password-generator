@@ -53,38 +53,33 @@ def _has_sequences(password: str) -> bool:
 def _calculate_score(checks: dict, length: int) -> int:
     score = 0
 
-    # Length scoring
-    if length >= 8:
-        score += 10
-    if length >= 12:
-        score += 15
-    if length >= 16:
-        score += 15
-    if length >= 20:
-        score += 10
+    # Length scoring — gradual, not generous
+    if length >= 6:   score += 5
+    if length >= 8:   score += 5
+    if length >= 12:  score += 10
+    if length >= 16:  score += 10
+    if length >= 20:  score += 5
 
     # Character variety
-    if checks["has_uppercase"]:
-        score += 10
-    if checks["has_lowercase"]:
-        score += 10
-    if checks["has_numbers"]:
-        score += 10
-    if checks["has_symbols"]:
-        score += 15
+    if checks["has_uppercase"]: score += 10
+    if checks["has_lowercase"]: score += 10
+    if checks["has_numbers"]:   score += 10
+    if checks["has_symbols"]:   score += 20
 
-    # Bonus checks
-    if checks["no_repeats"]:
-        score += 5
-    if checks["no_sequences"]:
-        score += 5
+    # Penalties for bad patterns
+    if not checks["no_repeats"]:   score -= 10
+    if not checks["no_sequences"]: score -= 10
 
-    # All variety bonus
+    # Bonus only if ALL character types present
     if all([checks["has_uppercase"], checks["has_lowercase"],
             checks["has_numbers"], checks["has_symbols"]]):
+        score += 10
+
+    # Extra bonus for long + complex
+    if length >= 16 and checks["has_symbols"]:
         score += 5
 
-    return min(score, 100)
+    return max(0, min(score, 100))
 
 
 def _score_to_level(score: int) -> str:
