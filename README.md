@@ -28,9 +28,9 @@ On the right side there's a 3D robot called CipherBot. He floats up and down on 
 
 ## Screenshots
 
-![Main View](PASTE_LINK_HERE)
-![Password Generated](PASTE_LINK_HERE)
-![Passphrase Mode](PASTE_LINK_HERE)
+<img width="1920" height="992" alt="main-view" src="https://github.com/user-attachments/assets/43b406c4-0efc-456d-b999-5245be740d87" />
+<img width="1920" height="986" alt="password-generated" src="https://github.com/user-attachments/assets/42bd70e1-00d5-49be-8be8-f933301a0198" />
+<img width="1920" height="995" alt="passphrase-mode" src="https://github.com/user-attachments/assets/8afa8ef6-486a-4b3b-921f-598ccc4b3fd1" />
 
 ---
 
